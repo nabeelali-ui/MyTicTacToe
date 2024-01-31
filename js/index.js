@@ -42,7 +42,10 @@ const checkWin = () => {
     }
     if (gameOver) {
       gameOverAudio.play();
-      boxes.removeEventListener("click", () => {});
+      let boxes = document.getElementsByClassName("box");
+      Array.from(boxes).forEach((element) => {
+        element.style.pointerEvents = "none";
+      });
     }
   });
 };
@@ -67,6 +70,10 @@ Array.from(boxes).forEach((element) => {
 
 //Add onClick listener to reset button
 reset.addEventListener("click", () => {
+  let boxes = document.getElementsByClassName("box");
+  Array.from(boxes).forEach((element) => {
+    element.style.pointerEvents = "auto";
+  });
   let boxtexts = document.querySelectorAll(".boxtext");
   Array.from(boxtexts).forEach((element) => {
     element.innerText = "";
